@@ -9,7 +9,7 @@ local Snake = {
         { 6, 7 },
         { 7, 7 },
     },
-    should_grow = false,
+    should_grow = 0,
 }
 
 function Snake:move(dx, dy)
@@ -25,15 +25,15 @@ function Snake:move(dx, dy)
         table.insert(self.body, 1, { self.head_x, self.head_y })
         self.head_x = self.head_x + dx
         self.head_y = self.head_y + dy
-        if self.should_grow then
+        if self.should_grow > 0 then
             table.insert(self.body, #self.body + 1, last)
-            self.should_grow = false
+            self.should_grow = self.should_grow - 1
         end
     end
 end
 
-function Snake:increase_size()
-    self.should_grow = true
+function Snake:increase_size(count)
+    self.should_grow = self.should_grow + (count or 1)
 end
 
 function Snake:draw()
