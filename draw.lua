@@ -13,4 +13,11 @@ function m.draw_box(x, y, color)
     )
 end
 
+function m.game_paused()
+    -- love.graphics.setColor(config.colors.purple)
+    local font = love.graphics.getFont()
+    local plainText = love.graphics.newText(font, "Game paused")
+    love.graphics.draw(plainText, 40, 40)
+end
+
 return m
