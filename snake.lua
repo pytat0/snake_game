@@ -26,7 +26,7 @@ function Snake:move(dx, dy)
         self.head_x = self.head_x + dx
         self.head_y = self.head_y + dy
         if self.should_grow then
-            table.insert(self.body, #self.body, last)
+            table.insert(self.body, #self.body + 1, last)
             self.should_grow = false
         end
     end
