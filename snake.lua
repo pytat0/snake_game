@@ -1,9 +1,11 @@
 local config = require 'config'
 local draw = require 'draw'
 local LinkedList = require 'linked_list'
+local structs = require 'structs'
 
 --- @class Snake
 local Snake = {
+    direction = structs.Directions.UP,
     head_x = 6,
     head_y = 6,
     ---@type LinkedList
@@ -13,7 +15,8 @@ local Snake = {
 Snake.body:add_last({ 6, 7 })
 Snake.body:add_last({ 7, 7 })
 
-function Snake:move(dx, dy)
+function Snake:move()
+    local dx, dy = Snake.direction[1], Snake.direction[2]
     local new_x = self.head_x + dx
     local new_y = self.head_y + dy
     local last = self.body:pop_last()
