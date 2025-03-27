@@ -44,7 +44,7 @@ end
 function LinkedList:pop_last()
     if self.length == 1 then
         self.length = self.length - 1
-        local last_element = self.first_element
+        local last_element = self.last_element.value
         self.last_element = nil
         self.first_element = nil
         return last_element
@@ -61,7 +61,7 @@ end
 function LinkedList:pop_first()
     if self.length == 1 then
         self.length = self.length - 1
-        local first_element = self.first_element
+        local first_element = self.first_element.value
         self.first_element = nil
         self.last_element = nil
         return first_element
@@ -100,10 +100,10 @@ end
 -- x:add_first(1)
 -- x:debug()
 -- print('pop', x:pop_first())
--- x:pop_last()
--- x:pop_last()
+-- print('pop', x:pop_last())
+-- print('pop', x:pop_last())
 -- x:debug()
--- x:pop_last()
+-- print('pop', x:pop_last())
 -- x:debug()
 
 
