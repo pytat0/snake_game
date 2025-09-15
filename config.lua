@@ -6,7 +6,7 @@ return {
         x_padding = 25,
         y_padding = 25,
     },
-    colors = {
+    colors = { -- colors from https://www.nordtheme.com/
         -- grey = { .28, .28, .28 },
         -- green = { .6, 1, .32 },
         dark_max = { 46 / 255, 52 / 255, 64 / 255 },
