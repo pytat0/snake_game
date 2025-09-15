@@ -7,25 +7,30 @@ local states = require 'states'
 local draw = require 'draw'
 local structs = require 'structs'
 
+-- TODO FIX not losing when eating the last tail block
+-- TODO FIX one can crawl towards one's body
+-- TODO ADD restart game from pause and after death
+-- TODO ADD exit from game
+
 function love.load()
     GameState = states.resume
     Timer = 0
 end
 
 function love.update(dt)
+    if updates.is_snake_move_into_wall(snake) or updates.is_snake_bite_itself(snake) then
+        GameState = states.game_over
+    end
+    if updates.is_snake_eat_food(snake, food) then
+        food:regenerate(snake)
+        snake:increase_size()
+    end
     if GameState == states.resume then
         Timer = Timer + dt
         if Timer >= 0.4 then
             Timer = 0
             snake:move()
         end
-    end
-    if updates.is_snake_move_into_wall(snake) or updates.is_snake_bite_itself(snake) then
-        GameState = states.game_over
-    end
-    if updates.is_snake_eat_food(snake, food) then
-        food:regenerate()
-        snake:increase_size()
     end
 end
 
