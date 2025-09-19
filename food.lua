@@ -5,14 +5,23 @@ local draw = require 'draw'
 local Food = {
     pos_x = 4,
     pos_y = 4,
+    temp_x = nil,
+    temp_y = nil
 }
 
 function Food:draw()
     draw.draw_box(self.pos_x, self.pos_y, config.colors.red)
 end
 
+
+-- PLAN rewrite after 1.0
 ---@param snake Snake
 function Food:regenerate(snake)
+
+    if snake.body.length + 1 == config.field.tile_count_x * config.field.tile_count_y then
+        return nil
+    end
+
     local function is_food_on_snake(pos_x, pos_y, snake)
         if snake.head_x == pos_x and snake.head_y == pos_y then
             return true
@@ -28,9 +37,11 @@ function Food:regenerate(snake)
     repeat
         local pos_x = math.random(config.field.tile_count_x)
         local pos_y = math.random(config.field.tile_count_y)
-        self.pos_x = pos_x
-        self.pos_y = pos_y
+        self.temp_x = pos_x
+        self.temp_y = pos_y
     until not is_food_on_snake(pos_x, pos_y, snake)
+    self.pos_x = self.temp_x
+    self.pos_y = self.temp_y
 end
 
 return Food

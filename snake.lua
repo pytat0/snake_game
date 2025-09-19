@@ -15,6 +15,7 @@ local Snake = {
 Snake.body:add_last({ 6, 7 })
 Snake.body:add_last({ 7, 7 })
 
+-- TODO FIX one can crawl towards one's body
 function Snake:move()
     local dx, dy = Snake.direction[1], Snake.direction[2]
     local new_x = self.head_x + dx

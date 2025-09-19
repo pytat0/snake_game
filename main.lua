@@ -7,8 +7,6 @@ local states = require 'states'
 local draw = require 'draw'
 local structs = require 'structs'
 
--- TODO FIX not losing when eating the last tail block
--- TODO FIX one can crawl towards one's body
 -- TODO ADD restart game from pause and after death
 -- TODO ADD exit from game
 
